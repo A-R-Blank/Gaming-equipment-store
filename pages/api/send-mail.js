@@ -1,4 +1,4 @@
-const nodemailer = require('nodemailer');
+import nodemailer from 'nodemailer';
 
 
 const EMAIL_USER = 'tetyand@mail.ru';
