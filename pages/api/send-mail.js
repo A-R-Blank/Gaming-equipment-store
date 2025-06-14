@@ -1,9 +1,12 @@
+// pages/api/send-mail.js
+
 import nodemailer from 'nodemailer';
 
+// Получаем данные из переменных окружения
+const EMAIL_USER = process.env.EMAIL_USER;
+const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD;
 
-const EMAIL_USER = 'tetyand@mail.ru';
-const EMAIL_PASSWORD = '77Hu3f1GxNxgKcyiVxL1';
-
+// Транспорт для отправки писем
 let transporter = nodemailer.createTransport({
   host: 'smtp.mail.ru',
   port: 587,
@@ -14,23 +17,16 @@ let transporter = nodemailer.createTransport({
   }
 });
 
-// let transporter = nodemailer.createTransport({
-//   service: 'mail.ru',
-//   auth: {
-//     user: process.env.EMAIL_USER,
-//     pass: process.env.EMAIL_PASSWORD
-//   },
-//   logger: true, // Включаем ведение логов
-//   debug: true // Включаем отладочный режим
-// });
+// Обработчик API
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: 'Метод не поддерживается' });
+  }
 
-(async () => {
+  const { user_email, user_question } = req.body;
+
   try {
-
-    const user_email = 'example@example.com';
-    const user_question = 'Какой-нибудь вопрос пользователя';
-
-
+    // Отправляем письмо
     let info = await transporter.sendMail({
       from: `"Support Team" <${EMAIL_USER}>`,
       to: 'comedi2290@hosliy.com',
@@ -42,8 +38,9 @@ let transporter = nodemailer.createTransport({
       `
     });
 
-    console.log('Письмо отправлено:', info.response);
+    res.status(200).json({ success: true });
   } catch (error) {
     console.error('Ошибка отправки письма:', error);
+    res.status(500).json({ message: 'Ошибка отправки письма' });
   }
-})();
+} 
