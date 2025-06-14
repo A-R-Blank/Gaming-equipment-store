@@ -2,7 +2,6 @@
 
 import Swal from 'sweetalert2';
 
-// Отдельный компонент для ввода Email
 async function InputEmail() {
       const { value: email } = await Swal.fire({
             title: "Введите email:",
@@ -19,7 +18,6 @@ async function InputEmail() {
       return email;
 }
 
-// Отдельный компонент для ввода текста вопроса
 async function InputQuestion(email) {
       const { value: question } = await Swal.fire({
             title: "Задайте свой вопрос:",
@@ -39,27 +37,52 @@ async function InputQuestion(email) {
       return { email, question };
 }
 
-// Основной компонент ContactUS
 const ContactUS = async () => {
       try {
-            // Первый шаг: запрашиваем email
-            const email = await InputEmail();
 
-            // Второй шаг: запрашиваем текст вопроса
+            const email = await InputEmail();
             const { email: finalEmail, question } = await InputQuestion(email);
 
-            // Третий шаг: выводим финальное сообщение с собранными данными
-            Swal.fire({
-                  icon: "info",
-                  title: "Спасибо за обращение!",
-                  text: `Мы скоро ответим.`,
-                  timer: 3000,
-                  toast: true,
-                  position: 'top-end',
-                  showConfirmButton: false
+
+            const data = {
+                  user_email: finalEmail,
+                  user_question: question
+            };
+
+
+            const response = await fetch('/shared/mail.php', { // Важно указывать полный путь к обработчику
+                  method: 'POST',
+                  headers: {
+                        'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(data)
             });
+
+            if (response.ok) {
+
+                  Swal.fire({
+                        icon: "success",
+                        title: "Спасибо за обращение!",
+                        text: `Мы скоро ответим.`,
+                        timer: 3000,
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false
+                  });
+            } else {
+
+                  Swal.fire({
+                        icon: "error",
+                        title: "Ошибка отправки!",
+                        text: "Что-то пошло не так. Повторите попытку позже.",
+                        timer: 3000,
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false
+                  });
+            }
       } catch (err) {
-            console.error(err.message); // Пользователь отменил диалог
+            console.error(err.message);
       }
 };
 
