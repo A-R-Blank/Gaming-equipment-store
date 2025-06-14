@@ -1,12 +1,8 @@
-// pages/api/send-mail.js
-
 import nodemailer from 'nodemailer';
 
-// Получаем данные из переменных окружения
 const EMAIL_USER = process.env.EMAIL_USER;
 const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD;
 
-// Транспорт для отправки писем
 let transporter = nodemailer.createTransport({
   host: 'smtp.mail.ru',
   port: 587,
@@ -17,7 +13,6 @@ let transporter = nodemailer.createTransport({
   }
 });
 
-// Обработчик API
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Метод не поддерживается' });
@@ -26,8 +21,7 @@ export default async function handler(req, res) {
   const { user_email, user_question } = req.body;
 
   try {
-    // Отправляем письмо
-    let info = await transporter.sendMail({
+    await transporter.sendMail({
       from: `"Support Team" <${EMAIL_USER}>`,
       to: 'comedi2290@hosliy.com',
       subject: 'Новый вопрос с сайта',
@@ -43,4 +37,4 @@ export default async function handler(req, res) {
     console.error('Ошибка отправки письма:', error);
     res.status(500).json({ message: 'Ошибка отправки письма' });
   }
-} 
+}
