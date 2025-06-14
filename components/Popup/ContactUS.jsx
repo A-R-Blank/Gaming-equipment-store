@@ -39,18 +39,15 @@ async function InputQuestion(email) {
 
 const ContactUS = async () => {
       try {
-
             const email = await InputEmail();
             const { email: finalEmail, question } = await InputQuestion(email);
-
 
             const data = {
                   user_email: finalEmail,
                   user_question: question
             };
 
-
-            const response = await fetch('/shared/mail.php', { // Важно указывать полный путь к обработчику
+            const response = await fetch('/api/send-mail', {
                   method: 'POST',
                   headers: {
                         'Content-Type': 'application/json'
@@ -59,7 +56,6 @@ const ContactUS = async () => {
             });
 
             if (response.ok) {
-
                   Swal.fire({
                         icon: "success",
                         title: "Спасибо за обращение!",
@@ -70,7 +66,6 @@ const ContactUS = async () => {
                         showConfirmButton: false
                   });
             } else {
-
                   Swal.fire({
                         icon: "error",
                         title: "Ошибка отправки!",
@@ -82,7 +77,7 @@ const ContactUS = async () => {
                   });
             }
       } catch (err) {
-            console.error(err.message);
+            console.error(err.message); // Пользователь отменил диалог
       }
 };
 
