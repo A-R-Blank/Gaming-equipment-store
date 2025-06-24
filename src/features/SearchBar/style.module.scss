@@ -1,0 +1,31 @@
+@import 'src/shared/styles/main.scss';
+
+.label {
+  margin-right: 24px;
+  width: 654px;
+}
+
+.search {
+  height: 48px;
+  width: 654px;
+  padding: 0 24px;
+  border: 1px solid rgba(72, 136, 255, 0.2);
+  border-radius: 8px;
+  color: $gray;
+  outline: none;
+  margin-right: 8px;
+}
+.btn_search {
+  position: relative;
+  bottom: 44px;
+  left: 572px;
+  width: 78px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 8px;
+  color: $white;
+  background-color: $blue;
+  border: none;
+  cursor: pointer;
+}

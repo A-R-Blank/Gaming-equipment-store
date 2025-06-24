@@ -1,0 +1,78 @@
+@import 'src/shared/styles/main';
+
+.specialMenu {
+  display: flex;
+  width: 900px;
+  height: 42px;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menuItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 42px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 400;
+  background-color: $light-gray;
+  color: $dark-gray;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    color: $blue;
+  }
+
+  .iconFill {
+    margin-right: 10px;
+    fill: $light-blue;
+    transition: fill 0.3s ease;
+  }
+
+  &:hover .iconFill {
+    fill: #2196F3;
+  }
+
+  position: relative;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  width: 200px;
+  background-color: $white;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 10;
+  list-style-type: none;
+
+  .productTitle {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .submenuLink {
+    display: block;
+    padding: 8px 12px;
+    color: #333333;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+}
+
+.menuItem.active + .submenu {
+  display: block;
+}

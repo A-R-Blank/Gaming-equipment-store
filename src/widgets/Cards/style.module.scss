@@ -1,0 +1,38 @@
+@import '../../shared/styles/main';
+
+.cards {
+  display: flex;
+  width: 176px;
+  height: 48px;
+  margin: 0 0 16px 0;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+}
+
+.cards__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid $hoverGray;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.cards__svg {
+  fill: $dark-gray; /* темно-серый цвет иконки */
+  transition: fill 0.3s ease;
+  width: 24px;
+  height: 24px;
+}
+
+
+.cards__item:hover {
+  border: 1px solid  $purple;
+}
+
+.cards__item:hover .cards__svg {
+  fill: $blue
+}

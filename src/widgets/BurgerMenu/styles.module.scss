@@ -1,0 +1,91 @@
+@import 'src/shared/styles/main.scss';
+
+.burgerCheckbox {
+  display: none;
+}
+
+.menuBox {
+  display: none;
+}
+
+.has_dropdown {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.burgerCheckbox:checked ~ .menuBox {
+  display: block;
+}
+
+.burger {
+  width: 100px;
+  height: 48px;
+  padding: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  transition: transform 0.1s ease-in-out;
+
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+.burger_menu {
+  position: relative;
+  width: 100px;
+  margin-right: 16px;
+}
+
+.burger_button {
+  cursor: pointer;
+}
+
+.menuBox {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.burgerCheckbox:checked ~ .menuBox {
+  list-style: none;
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  z-index: 11;
+}
+
+.submenu {
+  list-style: none;
+  position: absolute;
+  top: 0;
+  left: 101%;
+  background-color: white;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: visibility 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+.submenu.open {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.stub {
+  pointer-events: none;
+  cursor: default;
+}

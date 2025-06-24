@@ -1,0 +1,39 @@
+@import 'src/shared/styles/main';
+
+.time_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 180px;
+  font-size: 14px;
+  font-weight: 400;
+  color: $dark-gray;
+  @media (max-width: 1400px) {
+    display: none;
+    width: 200px;
+    z-index: 2;
+    position: absolute;
+    top: 208px;
+    left: 16px;
+  }
+}
+.time_icon {
+  display: none;
+  width: 12px;
+  height: 12px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  @media (max-width: 1400px) {
+    display: block;
+    width: 11px;
+    height: 12px;
+  }
+}
+
+.ime_colon {
+  animation-name: flickerAnim;
+  animation-duration: 4s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}

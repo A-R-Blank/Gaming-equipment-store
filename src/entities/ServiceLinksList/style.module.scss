@@ -1,0 +1,29 @@
+@import 'src/shared/styles/main';
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+.list {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.item {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.link {
+  height: 23px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: $gray;
+  border: none;
+  outline: none;
+  transition: color 0.2s;
+  &:hover {
+    color: $blue;
+  }
+}

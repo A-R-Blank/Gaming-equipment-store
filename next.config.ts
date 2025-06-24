@@ -1,7 +1,8 @@
-import type { NextConfig } from "next";
+// next.config.ts
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
+import { type NextConfig } from 'next';
+import withSvgr from 'next-svgr';
+
+const nextConfig: NextConfig = withSvgr();
 
 export default nextConfig;

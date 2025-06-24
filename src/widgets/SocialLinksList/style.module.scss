@@ -1,0 +1,44 @@
+@import 'src/shared/styles/main.scss';
+
+.socialNav {
+  display: flex;
+  align-items: center;
+}
+
+.list {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  background-color: $light-gray;
+  transition: background-color 0.3s ease;
+}
+
+.link:hover {
+  background-color: $hoverGray;
+}
+
+.link svg {
+  fill: $dark-gray;
+  transition: fill 0.3s ease;
+}
+
+.link:hover svg {
+  fill: $blue;
+}
