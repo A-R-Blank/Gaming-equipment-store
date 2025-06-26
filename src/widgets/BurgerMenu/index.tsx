@@ -114,5 +114,4 @@ const BurgerMenu = () => {
   );
 };
 
-// Экспорт компонента
 export default BurgerMenu;
