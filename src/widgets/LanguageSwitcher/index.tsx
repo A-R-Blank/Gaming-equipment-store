@@ -1,9 +1,8 @@
-// src/widgets/LanguageSwitcher/index.tsx
 "use client";
 
 import React, { useContext } from 'react';
 import LanguageContext from '@/src/shared/constants/LanguageContext';
-import styles from './style.module.scss'; // импортируем стили
+import styles from './style.module.scss';
 
 import PlanetIcon from '@/public/image/planet.svg';
 
