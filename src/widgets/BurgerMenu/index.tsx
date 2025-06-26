@@ -1,5 +1,3 @@
-// src/widgets/BurgerMenu/index.tsx
-
 "use client";
 
 import React, { useState, useRef, useContext, useEffect } from 'react';
@@ -9,76 +7,59 @@ import styles from './styles.module.scss';
 import BurgerBtn from "@/public/image/btn-menu.svg";
 import LanguageContext from '@/src/shared/constants/LanguageContext';
 
-// Статический импорт данных пунктов меню
+
 import { BURGER_MENU_ITEMS_RU } from '@/src/shared/constants/translations/common.ru';
 import { BURGER_MENU_ITEMS_EN } from '@/src/shared/constants/translations/common.en';
 
-// Интерфейс для открытых пунктов меню
 interface IOpenItems {
-  [index: string]: boolean; // Индексация по строковым ключам
+  [index: string]: boolean; 
 }
-
-// Интерфейс для входящих данных компонента
-// interface IProps {} - Удаляем пустой интерфейс
 
 const BurgerMenu = () => {
   const { currentLang } = useContext(LanguageContext);
 
-  // Состояние открытых пунктов меню
   const [openItems, setOpenItems] = useState<IOpenItems>({});
 
-  // Состояние видимости меню
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Реф для нав-элемента
-  const navRef = useRef<HTMLElement | null>(null); // Явно указываем тип HTMLElement
+  const navRef = useRef<HTMLElement | null>(null); 
 
-  // Константа для хранения пунктов меню
   const menuItems: IBurgerMenuItem[] = currentLang === 'ru' ? BURGER_MENU_ITEMS_RU : BURGER_MENU_ITEMS_EN;
 
-  // Функция открытия-подзакрытия подменю
   const toggleSubmenu = (index: number) => {
-    // Формируем новый объект, где все подменю закрыты
-    const closedMenus: IOpenItems = Object.keys(openItems).reduce(
+      const closedMenus: IOpenItems = Object.keys(openItems).reduce(
       (result, key) => {
         result[key] = false;
         return result;
       },
-      {} as IOpenItems // Явно указываем тип для результирующего объекта
+      {} as IOpenItems
     );
 
-    // Добавляем текущее подменю как открытое
     closedMenus[index.toString()] = true;
 
-    // Обновляем состояние
     setOpenItems(closedMenus);
   };
 
-  // Функция полного закрытия меню
+
   const closeMenu = () => {
-    setOpenItems({}); // Закрываем все подменю
-    setIsMenuOpen(false); // Закрываем само меню
+    setOpenItems({}); 
+    setIsMenuOpen(false); 
   };
 
-  // Функция открытия меню
   const openMenu = () => {
-    setIsMenuOpen(true); // Открываем меню
+    setIsMenuOpen(true); 
   };
 
-  // Установка слушателя кликов на документ
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      // Проверяем, попал ли клик внутрь меню
-      const navElement = navRef.current;
+           const navElement = navRef.current;
       if (navElement && !(navElement.contains(event.target as Node))) {
-        closeMenu(); // Закрываем меню
+        closeMenu(); 
       }
     };
 
-    // Регистрация обработчика кликов
     document.addEventListener('click', handleClickOutside);
 
-    // Отмена регистрации обработчика при уничтожении компонента
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
