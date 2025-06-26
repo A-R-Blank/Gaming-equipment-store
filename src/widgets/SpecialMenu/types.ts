@@ -1,5 +1,3 @@
-// src/widgets/types.ts
-
 import React from 'react';
 
 export interface ISpecialMenuItemProps {
