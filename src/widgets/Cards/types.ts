@@ -7,7 +7,7 @@ export interface ISVGIcon {
 }
 
 export interface ICardProps extends ISVGIcon {
-  Icon: React.ComponentType<ISVGIcon>; // SVG-иконка
+  Icon: React.ComponentType<ISVGIcon>; 
   href: string;
   altText?: string;
 }
