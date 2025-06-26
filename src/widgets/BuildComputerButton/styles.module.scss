@@ -8,8 +8,8 @@
   width: 176px;
   height: 42px;
   padding: 0 0 0 29px;
-  background-color: $light-gray; /* Светло-серый цвет фона */
-  color: $blue; /* Синий цвет текста */
+  background-color: $light-gray; 
+  color: $blue; 
   font-size: 16px;
   text-decoration: none;
   border: none;
@@ -56,7 +56,7 @@
   }
 
   &:hover {
-    background-color: $blue; /* Синий цвет фона при наведении */
-    color: $white; /* Белый цвет текста при наведении */
+    background-color: $blue; 
+    color: $white; 
   }
 }
